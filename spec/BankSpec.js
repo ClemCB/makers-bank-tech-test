@@ -45,4 +45,18 @@ describe("Bank", function() {
       expect(bank.withdraw("name", 200)).toEqual("Withdraw successfully made");
     });
   });
+
+  describe("statement", function() {
+
+    beforeEach(function() {
+      bank.createAccount("name");
+      bank.deposit("name", 1000);
+      bank.withdraw("name", 500);
+    });
+
+    it("should display a user's full banking history", function() {
+      expect(bank.viewStatement("name")).toEqual("date || credit || debit || balance" + "\n" +"Tue Apr 18 2017 || 1000 || undefined || 1000" + "\n" + "Tue Apr 18 2017 || undefined || 500 || 500");
+    });
+
+  });
 });

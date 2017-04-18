@@ -33,6 +33,14 @@
     }
   };
 
+  Account.prototype.viewStatement = function() {
+    var fullStatement = "date || credit || debit || balance"
+    this.transactions.forEach(function(transaction) {
+      fullStatement += ("\n" + transaction.date + " || " + transaction.credit + " || " + transaction.debit + " || " + transaction.balance)
+    });
+    return fullStatement;
+  }
+
   exports.Account = Account;
 
 })(this);

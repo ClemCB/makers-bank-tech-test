@@ -36,6 +36,14 @@
     }
   }
 
+  Bank.prototype.viewStatement = function(accountName) {
+    for (var i = 0; i < this.accounts.length; i ++) {
+      if (accountName === this.accounts[i].accountHolder) {
+        return this.accounts[i].viewStatement()
+      }
+    }
+  }
+
   exports.Bank = Bank;
 
 })(this);
