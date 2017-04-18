@@ -1,8 +1,8 @@
 ## Makers Challenge: Bank Tech Test
 
-Makers tech test challenge 01 to help get some practice in ahead of the real deals. Chose to work in JavaScript, working in vanilla JS and Jasmine for testing. All user stories and work my own.
+Makers mock tech test to help get some practice in ahead of the real deals. I chose to work in vanilla JavaScript, using Jasmine for testing. All user stories and work my own.
 
-In this challenge, I was interested in creating a polymorphic function (makeTransaction) for handling deposits and withdrawals from the Bank object to the Account object.
+In this challenge, I was interested in creating a polymorphic function (`makeTransaction`). `makeTransaction` is called by the Bank on an Account when the Bank receives a request to deposit or withdraw funds. This worked fairly successfully (see below for challenges).
 
 ```
 As a customer,
@@ -32,8 +32,8 @@ I want to be able to get a printed statement with dates of all my transactions.
 
 ### How to use
 
-- After you've cloned this repo and ` cd ` 'd into it, `open SpecRunner.html` to see all tests (currently 21 in total)
-- Interact with this programme in the console, like so:
+- After you've cloned this repo and ` cd ` 'd into it, `open SpecRunner.html` to see all tests.
+- Interact with this programme in the browser console:
 
 ```
 var bank = new Bank()
@@ -77,3 +77,4 @@ bank.viewStatement("Charlie")
 - Keeping code DRY when requiring the user to interact with the Bank object rather than their accounts directly. I needed to loop through the array of accounts on every function call. This was a design decision I made in order for a central Bank to hold multiple accounts.
 - Working without a database required some immediate formatting of dates.
 - Interest in creating a polymorphic function led the need to remove 'undefined' values from transaction history before printing bank statements to the user.
+- Time restraints prevented full coverage of test cases (I would introduce checks for integers and introduce limits on withdrawals).
