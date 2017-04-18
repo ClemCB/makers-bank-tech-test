@@ -36,7 +36,7 @@ describe("Account", function() {
     });
 
     it("save the time of a deposit", function() {
-      expect(account.transactions[0].date).toEqual("Sat Sep 02 2017");
+      expect(account.transactions[0].date).toEqual("1/9/2017");
     });
 
     it("save the new balance following a transaction", function() {
@@ -61,7 +61,7 @@ describe("Account", function() {
     });
 
     it("should save the time of a deposit", function() {
-      expect(account.transactions[1].date).toEqual("Sat Sep 02 2017");
+      expect(account.transactions[1].date).toEqual("1/9/2017");
     });
 
     it("should save the new balance following a transaction", function() {
@@ -78,7 +78,7 @@ describe("Account", function() {
     });
 
     it("returns full history of transactions from the user account", function() {
-      expect(account.viewStatement()).toEqual("date || credit || debit || balance" + "\n" +"Sat Sep 02 2017 || 500 ||   || 500" + "\n" + "Sat Sep 02 2017 ||   || 300 || 200");
+      expect(account.viewStatement()).toEqual("date || credit || debit || balance" + "\n" +"1/9/2017 || 500 ||   || 500" + "\n" + "1/9/2017 ||   || 300 || 200");
     });
 
   });

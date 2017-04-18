@@ -9,7 +9,7 @@
   Account.prototype.makeTransaction = function(transaction_type, amount) {
     this.adjustBalance(transaction_type, amount)
     var transaction = {
-      date: (new Date()).toDateString(),
+      date: formatDate(new Date),
       [transaction_type] : amount,
       balance : this.balance
     }
@@ -28,6 +28,13 @@
   Account.prototype.adjustBalance = function (transaction_type, amount) {
     return (transaction_type === "credit") ? this.balance += amount : this.balance -= amount;
   };
+
+    function formatDate(date) {
+      var day = date.getUTCDate()
+      var month = (date.getMonth() + 1)
+      var year = date.getUTCFullYear()
+      return day + "/" + month + "/" + year
+    }
 
   exports.Account = Account;
 
