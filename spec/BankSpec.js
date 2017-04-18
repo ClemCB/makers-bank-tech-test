@@ -31,11 +31,11 @@ describe("Bank", function() {
   describe("transactions", function() {
 
     it("confirms to users their deposit has been successful", function() {
-      expect(bank.deposit("name", 300)).toEqual("Deposit successfully made");
+      expect(bank.deposit("name", 300)).toEqual("Deposit of £300 successfully made");
     });
 
     it("confirms to users their withdrawal has been successful", function() {
-      expect(bank.withdraw("name", 200)).toEqual("Withdraw successfully made");
+      expect(bank.withdraw("name", 200)).toEqual("Withdraw of £200 successfully made");
     });
   });
 
@@ -47,7 +47,7 @@ describe("Bank", function() {
     });
 
     it("displays a user's full banking history", function() {
-      expect(bank.viewStatement("name")).toEqual("date || credit || debit || balance" + "\n" +"Tue Apr 18 2017 || 1000 ||   || 1000" + "\n" + "Tue Apr 18 2017 ||   || 500 || 500");
+      expect(bank.viewStatement("name")).toEqual("date || credit || debit || balance" + "\n" +"Sat Sep 02 2017 || 1000 ||   || 1000" + "\n" + "Sat Sep 02 2017 ||   || 500 || 500");
     });
 
   });
