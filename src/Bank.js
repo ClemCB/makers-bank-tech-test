@@ -28,6 +28,7 @@
 
   Bank.prototype.deposit = function(accountName, amount) {
     try {
+      checkAmount(amount);
       this.accountChecker(accountName).makeTransaction("credit", amount);
       return "Deposit of £" + amount + " successfully made";
     } catch(err) {
@@ -37,6 +38,7 @@
 
   Bank.prototype.withdraw = function(accountName, amount) {
     try {
+      checkAmount(amount);
       this.accountChecker(accountName).makeTransaction("debit", amount);
       return "Withdraw of £" + amount + " successfully made";
     } catch(err) {
@@ -50,6 +52,12 @@
     } catch(err) {
       return err
     };
+  }
+
+  function checkAmount(amount) {
+    if (amount % 1 !== 0) {
+      throw "Deposit/withdrawal amount is not a number"
+    }
   }
 
   exports.Bank = Bank;

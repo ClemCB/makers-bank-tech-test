@@ -55,6 +55,16 @@ describe("Bank", function() {
     it("displays a user's full banking history", function() {
       expect(bank.viewStatement("name")).toEqual("date || credit || debit || balance" + "\n" +"1/9/2017 || 1000 ||   || 1000" + "\n" + "1/9/2017 ||   || 500 || 500");
     });
+  });
 
+  describe("edge case checks", function() {
+
+    it("checks deposit amount is an integer", function() {
+      expect(bank.deposit("name", "potatoes")).toEqual("Deposit/withdrawal amount is not a number");
+    });
+
+    it("checks withdrawal amount is an integer", function() {
+      expect(bank.withdraw("name", "potatoes")).toEqual("Deposit/withdrawal amount is not a number");
+    });
   });
 });

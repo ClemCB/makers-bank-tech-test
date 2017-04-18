@@ -23,7 +23,7 @@ I want to be able to withdraw funds.
 
 As a customer,
 So that I can keep track of my spending,
-I want to know the date I made withdraws and deposits.
+I want to know the date I made withdrawals and deposits.
 
 As a customer,
 So that I can track all my banking activity,
@@ -77,4 +77,4 @@ bank.viewStatement("Charlie")
 - Keeping code DRY when requiring the user to interact with the Bank object rather than their accounts directly. I needed to loop through the array of accounts on every function call. This was a design decision I made in order for a central Bank to hold multiple accounts.
 - Working without a database required some immediate formatting of dates.
 - Interest in creating a polymorphic function led the need to remove 'undefined' values from transaction history before printing bank statements to the user.
-- Time restraints prevented full coverage of test cases (I would introduce checks for integers and introduce limits on withdrawals).
+- Time restraints prevented full coverage of edge cases (I would introduce limits on withdrawals).
