@@ -7,16 +7,16 @@
   };
 
   Account.prototype.deposit = function(amount) {
-    this.addTransaction("credit", amount)
+    this.makeTransaction("credit", amount)
     return this.balance += amount;
   }
 
   Account.prototype.withdraw = function (amount) {
-    this.addTransaction("debit", amount)
+    this.makeTransaction("debit", amount)
     return this.balance -= amount;
   };
 
-  Account.prototype.addTransaction = function(transaction_type, amount) {
+  Account.prototype.makeTransaction = function(transaction_type, amount) {
     var transaction = {
       date: (new Date()).toDateString(),
       [transaction_type] : amount,

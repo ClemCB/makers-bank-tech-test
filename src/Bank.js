@@ -8,39 +8,47 @@
     this.accounts.push(new Account(string));
   }
 
-  Bank.prototype.checkBalance = function(accountName) {
+  Bank.prototype.accountChecker = function(accountName) {
     for (var i = 0; i < this.accounts.length; i ++) {
       if (accountName === this.accounts[i].accountHolder) {
-        return this.accounts[i].balance;
-      } else {
-        return "This account does not exist";
+        return this.accounts[i];
       }
+    }
+  }
+
+  Bank.prototype.checkBalance = function(accountName) {
+    if (this.accountChecker(accountName)) {
+      return this.accountChecker(accountName).balance;
+    } else {
+      return "This account does not exist";
     }
   }
 
   Bank.prototype.deposit = function(accountName, amount) {
-    for (var i = 0; i < this.accounts.length; i ++) {
-      if (accountName === this.accounts[i].accountHolder) {
-        this.accounts[i].deposit(amount)
-        return "Deposit successfully made"
-      }
+    if (this.accountChecker(accountName)) {
+      this.accountChecker(accountName).makeTransaction("credit", amount);
+      this.accountChecker(accountName).balance += amount;
+      return "Deposit successfully made";
+    } else {
+      return "This account does not exist";
     }
   }
 
   Bank.prototype.withdraw = function(accountName, amount) {
-    for (var i = 0; i < this.accounts.length; i ++) {
-      if (accountName === this.accounts[i].accountHolder) {
-        this.accounts[i].withdraw(amount)
-        return "Withdraw successfully made"
-      }
+    if (this.accountChecker(accountName)) {
+      this.accountChecker(accountName).makeTransaction("debit", amount);
+      this.accountChecker(accountName).balance -= amount;
+      return "Withdraw successfully made";
+    } else {
+      return "This account does not exist";
     }
   }
 
   Bank.prototype.viewStatement = function(accountName) {
-    for (var i = 0; i < this.accounts.length; i ++) {
-      if (accountName === this.accounts[i].accountHolder) {
-        return this.accounts[i].viewStatement()
-      }
+    if (this.accountChecker(accountName)) {
+      return this.accountChecker(accountName).viewStatement();
+    } else {
+      return "This account does not exist";
     }
   }
 
