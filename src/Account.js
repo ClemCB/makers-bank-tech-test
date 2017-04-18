@@ -11,6 +11,11 @@
     return this.balance += amount;
   }
 
+  Account.prototype.withdraw = function (amount) {
+    this.addTransaction("debit", amount)
+    return this.balance -= amount;
+  };
+
   Account.prototype.addTransaction = function(transaction_type, amount) {
     var transaction = {
       date: (new Date()).toDateString(),
@@ -23,17 +28,11 @@
   Account.prototype.calculateBalance = function(transaction_type, amount) {
     if (transaction_type === "credit") {
       return this.balance + amount;
+    } else {
+      return this.balance - amount;
     }
   };
 
   exports.Account = Account;
 
 })(this);
-
-//
-// var person = {
-//     firstName:"John",
-//     lastName:"Doe",
-//     age:50,
-//     eyeColor:"blue"
-// };

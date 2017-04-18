@@ -27,6 +27,15 @@
     }
   }
 
+  Bank.prototype.withdraw = function(accountName, amount) {
+    for (var i = 0; i < this.accounts.length; i ++) {
+      if (accountName === this.accounts[i].accountHolder) {
+        this.accounts[i].withdraw(amount)
+        return "Withdraw successfully made"
+      }
+    }
+  }
+
   exports.Bank = Bank;
 
 })(this);

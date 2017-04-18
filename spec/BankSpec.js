@@ -40,5 +40,9 @@ describe("Bank", function() {
     it("should confirm to users their deposit has been successful", function() {
       expect(bank.deposit("name", 300)).toEqual("Deposit successfully made");
     });
+
+    it("should confirm to users their deposit has been successful", function() {
+      expect(bank.withdraw("name", 200)).toEqual("Withdraw successfully made");
+    });
   });
 });
