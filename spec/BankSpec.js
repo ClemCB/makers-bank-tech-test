@@ -30,4 +30,15 @@ describe("Bank", function() {
     bank.createAccount("name");
     expect(bank.checkBalance("notname")).toEqual("This account does not exist");
   });
+
+  describe("transactions", function() {
+
+    beforeEach(function() {
+      bank.createAccount("name");
+    });
+
+    it("should confirm to users their deposit has been successful", function() {
+      expect(bank.deposit("name", 300)).toEqual("Deposit successfully made");
+    });
+  });
 });

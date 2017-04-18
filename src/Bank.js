@@ -18,6 +18,15 @@
     }
   }
 
+  Bank.prototype.deposit = function(accountName, amount) {
+    for (var i = 0; i < this.accounts.length; i ++) {
+      if (accountName === this.accounts[i].accountHolder) {
+        this.accounts[i].deposit(amount)
+        return "Deposit successfully made"
+      }
+    }
+  }
+
   exports.Bank = Bank;
 
 })(this);
