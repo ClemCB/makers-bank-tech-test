@@ -26,7 +26,7 @@
 
   Bank.prototype.deposit = function(accountName, amount) {
     if (this.accountChecker(accountName)) {
-      this.accountChecker(accountName).deposit(amount);
+      this.accountChecker(accountName).makeTransaction("credit", amount);
       return "Deposit successfully made";
     } else {
       return "This account does not exist";
@@ -35,7 +35,7 @@
 
   Bank.prototype.withdraw = function(accountName, amount) {
     if (this.accountChecker(accountName)) {
-      this.accountChecker(accountName).withdraw(amount);
+      this.accountChecker(accountName).makeTransaction("debit", amount);
       return "Withdraw successfully made";
     } else {
       return "This account does not exist";
