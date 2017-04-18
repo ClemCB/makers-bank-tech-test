@@ -55,7 +55,7 @@ describe("Bank", function() {
     });
 
     it("should display a user's full banking history", function() {
-      expect(bank.viewStatement("name")).toEqual("date || credit || debit || balance" + "\n" +"Tue Apr 18 2017 || 1000 || undefined || 1000" + "\n" + "Tue Apr 18 2017 || undefined || 500 || 500");
+      expect(bank.viewStatement("name")).toEqual("date || credit || debit || balance" + "\n" +"Tue Apr 18 2017 || 1000 ||   || 1000" + "\n" + "Tue Apr 18 2017 ||   || 500 || 500");
     });
 
   });

@@ -3,7 +3,7 @@
   function Account(name) {
     this.balance = 0;
     this.accountHolder = name;
-    this.transactions = []
+    this.transactions = [];
   };
 
   Account.prototype.deposit = function(amount) {
@@ -26,17 +26,14 @@
   };
 
   Account.prototype.calculateBalance = function(transaction_type, amount) {
-    if (transaction_type === "credit") {
-      return this.balance + amount;
-    } else {
-      return this.balance - amount;
-    }
+    return (transaction_type === "credit") ? this.balance + amount : this.balance - amount;
   };
 
   Account.prototype.viewStatement = function() {
     var fullStatement = "date || credit || debit || balance"
     this.transactions.forEach(function(transaction) {
       fullStatement += ("\n" + transaction.date + " || " + transaction.credit + " || " + transaction.debit + " || " + transaction.balance)
+      fullStatement = fullStatement.replace("undefined", " ")
     });
     return fullStatement;
   }

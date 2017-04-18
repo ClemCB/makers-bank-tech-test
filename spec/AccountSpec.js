@@ -82,7 +82,7 @@ describe("Account", function() {
     });
 
     it("returns full history of transactions from the user account", function() {
-      expect(account.viewStatement()).toEqual("date || credit || debit || balance" + "\n" +"Tue Apr 18 2017 || 500 || undefined || 500" + "\n" + "Tue Apr 18 2017 || undefined || 300 || 200");
+      expect(account.viewStatement()).toEqual("date || credit || debit || balance" + "\n" +"Tue Apr 18 2017 || 500 ||   || 500" + "\n" + "Tue Apr 18 2017 ||   || 300 || 200");
     });
 
   });
