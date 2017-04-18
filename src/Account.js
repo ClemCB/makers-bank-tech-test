@@ -1,7 +1,8 @@
 (function(exports) {
 
-  function Account() {
+  function Account(name) {
     this.balance = 0;
+    this.accountHolder = name;
   };
 
   exports.Account = Account;

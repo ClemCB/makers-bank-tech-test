@@ -1,8 +1,10 @@
 describe("Bank", function() {
   var bank;
+  var account;
 
   beforeEach(function() {
     bank = new Bank();
+    account = new Account("name");
   });
 
   it("should have an array to store accounts opened", function() {
@@ -10,12 +12,22 @@ describe("Bank", function() {
   });
 
   it("should store accounts objects array (testing object)", function() {
-    bank.createAccount(name)
+    bank.createAccount("name")
     expect(bank.accounts[0].constructor.name).toEqual('Account');
   });
 
   it("should store accounts objects array (testing array length)", function() {
-    bank.createAccount(name)
+    bank.createAccount("name");
     expect(bank.accounts.length).toEqual(1);
+  });
+
+  it("should return a customer balance", function() {
+    bank.createAccount("name");
+    expect(bank.checkBalance("name")).toEqual(0);
+  });
+
+  it("should return a message if an account does not exist", function() {
+    bank.createAccount("name");
+    expect(bank.checkBalance("notname")).toEqual("This account does not exist");
   });
 });
