@@ -12,42 +12,44 @@
     for (var i = 0; i < this.accounts.length; i ++) {
       if (accountName === this.accounts[i].accountHolder) {
         return this.accounts[i];
+      } else {
+        throw "This account does not exist"
       }
     }
   }
 
   Bank.prototype.checkBalance = function(accountName) {
-    if (this.accountChecker(accountName)) {
+    try {
       return this.accountChecker(accountName).balance;
-    } else {
-      return "This account does not exist";
-    }v
+    } catch(err) {
+      return err;
+    };
   }
 
   Bank.prototype.deposit = function(accountName, amount) {
-    if (this.accountChecker(accountName)) {
+    try {
       this.accountChecker(accountName).makeTransaction("credit", amount);
       return "Deposit of £" + amount + " successfully made";
-    } else {
-      return "This account does not exist";
-    }
+    } catch(err) {
+      return err;
+    };
   }
 
   Bank.prototype.withdraw = function(accountName, amount) {
-    if (this.accountChecker(accountName)) {
+    try {
       this.accountChecker(accountName).makeTransaction("debit", amount);
       return "Withdraw of £" + amount + " successfully made";
-    } else {
-      return "This account does not exist";
-    }
+    } catch(err) {
+      return err
+    };
   }
 
   Bank.prototype.viewStatement = function(accountName) {
-    if (this.accountChecker(accountName)) {
+    try {
       return this.accountChecker(accountName).viewStatement();
-    } else {
-      return "This account does not exist";
-    }
+    } catch(err) {
+      return err
+    };
   }
 
   exports.Bank = Bank;

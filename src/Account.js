@@ -17,24 +17,28 @@
   };
 
   Account.prototype.viewStatement = function() {
-    var fullStatement = "date || credit || debit || balance"
+    fullStatement = "date || credit || debit || balance"
+    this.modifyTransactionsForView()
+    return fullStatement;
+  }
+
+  Account.prototype.modifyTransactionsForView = function() {
     this.transactions.forEach(function(transaction) {
       fullStatement += ("\n" + transaction.date + " || " + transaction.credit + " || " + transaction.debit + " || " + transaction.balance)
       fullStatement = fullStatement.replace("undefined", " ")
     });
-    return fullStatement;
   }
 
   Account.prototype.adjustBalance = function (transaction_type, amount) {
     return (transaction_type === "credit") ? this.balance += amount : this.balance -= amount;
   };
 
-    function formatDate(date) {
-      var day = date.getUTCDate()
-      var month = (date.getMonth() + 1)
-      var year = date.getUTCFullYear()
-      return day + "/" + month + "/" + year
-    }
+  function formatDate(date) {
+    var day = date.getUTCDate()
+    var month = (date.getMonth() + 1)
+    var year = date.getUTCFullYear()
+    return day + "/" + month + "/" + year
+  }
 
   exports.Account = Account;
 

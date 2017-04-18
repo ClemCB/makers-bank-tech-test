@@ -24,7 +24,13 @@ describe("Bank", function() {
     expect(bank.checkBalance("name")).toEqual(0);
   });
 
-  it("returns a message if an account does not exist", function() {
+  it("throws an error on account checker if the account does not exist", function() {
+    expect(function() {
+      bank.accountChecker("notname");
+    }).toThrow();
+  });
+
+  it("catches the error and returns a message if the account does not exist", function() {
     expect(bank.checkBalance("notname")).toEqual("This account does not exist");
   });
 
