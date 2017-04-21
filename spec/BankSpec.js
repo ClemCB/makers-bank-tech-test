@@ -1,3 +1,5 @@
+"use strict";
+
 describe("Bank", function() {
   var bank;
   var account;
@@ -9,11 +11,11 @@ describe("Bank", function() {
   });
 
   it("has an array to store accounts opened", function() {
-    expect(bank.accounts.constructor.name).toEqual('Array');
+    expect(bank.accounts.constructor.name).toEqual("Array");
   });
 
   it("stores accounts objects array (testing object)", function() {
-    expect(bank.accounts[0].constructor.name).toEqual('Account');
+    expect(bank.accounts[0].constructor.name).toEqual("Account");
   });
 
   it("stores accounts objects array (testing array length)", function() {
@@ -22,6 +24,12 @@ describe("Bank", function() {
 
   it("returns a customer balance", function() {
     expect(bank.checkBalance("name")).toEqual(0);
+  });
+
+  it("stores multiple accounts", function() {
+    bank.createAccount("secondname");
+    expect(bank.checkBalance("secondname")).toEqual(0);
+    expect(bank.accounts[1].accountHolder).toEqual("secondname");
   });
 
   it("throws an error on account checker if the account does not exist", function() {
@@ -37,11 +45,13 @@ describe("Bank", function() {
   describe("transactions", function() {
 
     it("confirms to users their deposit has been successful", function() {
-      expect(bank.deposit("name", 300)).toEqual("Deposit of £300 successfully made");
+      bank.deposit("name", 300)
+      expect(bank.checkBalance("name")).toEqual(300);
     });
 
     it("confirms to users their withdrawal has been successful", function() {
-      expect(bank.withdraw("name", 200)).toEqual("Withdraw of £200 successfully made");
+      bank.withdraw("name", 200)
+      expect(bank.checkBalance("name")).toEqual(-200);
     });
   });
 
@@ -53,7 +63,7 @@ describe("Bank", function() {
     });
 
     it("displays a user's full banking history", function() {
-      expect(bank.viewStatement("name")).toEqual("date || credit || debit || balance" + "\n" +"1/9/2017 || 1000 ||   || 1000" + "\n" + "1/9/2017 ||   || 500 || 500");
+      expect(bank.viewStatement("name")).toEqual("date || credit || debit || balance" + "\n" + "1/9/2017 || 1000 ||   || 1000" + "\n" + "1/9/2017 ||   || 500 || 500");
     });
   });
 

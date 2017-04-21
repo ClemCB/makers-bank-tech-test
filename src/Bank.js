@@ -8,19 +8,18 @@
     this.accounts.push(new Account(string));
   }
 
-  Bank.prototype.accountChecker = function(accountName) {
+  Bank.prototype.selectUserAccount = function (accountName) {
     for (var i = 0; i < this.accounts.length; i ++) {
       if (accountName === this.accounts[i].accountHolder) {
         return this.accounts[i];
-      } else {
-        throw "This account does not exist"
       }
     }
-  }
+  };
 
   Bank.prototype.checkBalance = function(accountName) {
     try {
-      return this.accountChecker(accountName).balance;
+      this.accountChecker(accountName)
+      return this.selectUserAccount(accountName).balance;
     } catch(err) {
       return err;
     };
@@ -28,9 +27,9 @@
 
   Bank.prototype.deposit = function(accountName, amount) {
     try {
+      this.accountChecker(accountName)
       checkAmount(amount);
-      this.accountChecker(accountName).makeTransaction("credit", amount);
-      return "Deposit of £" + amount + " successfully made";
+      this.selectUserAccount(accountName).makeTransaction("credit", amount);
     } catch(err) {
       return err;
     };
@@ -38,9 +37,9 @@
 
   Bank.prototype.withdraw = function(accountName, amount) {
     try {
+      this.accountChecker(accountName)
       checkAmount(amount);
-      this.accountChecker(accountName).makeTransaction("debit", amount);
-      return "Withdraw of £" + amount + " successfully made";
+      this.selectUserAccount(accountName).makeTransaction("debit", amount);
     } catch(err) {
       return err
     };
@@ -48,16 +47,35 @@
 
   Bank.prototype.viewStatement = function(accountName) {
     try {
-      return this.accountChecker(accountName).viewStatement();
+      this.accountChecker(accountName)
+      return this.selectUserAccount(accountName).viewStatement();
     } catch(err) {
       return err
     };
   }
 
+  Bank.prototype.runChecks = function (accountName, amount) {
+    this.accountChecker(accountName);
+    checkAmount(amount)
+  };
+
   function checkAmount(amount) {
     if (amount % 1 !== 0) {
       throw "Deposit/withdrawal amount is not a number"
     }
+  }
+
+  Bank.prototype.accountChecker = function(accountName) {
+    var search = "";
+    for (var i = 0; i < this.accounts.length; i ++) {
+      if (accountName === this.accounts[i].accountHolder) {
+        search = "found user"
+      }
+    }
+    if (search !== "found user") {
+      throw "This account does not exist"
+    }
+    var search = ""
   }
 
   exports.Bank = Bank;
