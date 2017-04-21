@@ -49,10 +49,13 @@ bank
 > Bank {accounts: Array[1]}
 
 bank.deposit("Clem", 4000)
-> "Deposit of £4000 successfully made"
+> undefined
+
+bank.checkBalance("Clem")
+> 4000
 
 bank.withdraw("Clem", 200)
-> "Withdraw of £200 successfully made"
+> undefined
 
 bank.checkBalance("Clem")
 > 3800
